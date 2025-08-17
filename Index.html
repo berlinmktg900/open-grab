@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Grab</title>
+<style>
+button{padding:14px 18px;font-size:16px;border:0;border-radius:10px}
+</style>
+</head>
+<body>
+<button id="go">Open Grab & Copy Address</button>
+
+<script>
+const TEXT = "SWETTENHAM – Terminal Entrance";
+document.getElementById('go').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(TEXT);
+    alert("Destination copied:\n" + TEXT + "\n\nOpen Grab and paste in the search box.");
+  } catch(e) {
+    // Some Android browsers require user gesture or deny clipboard; still proceed
+  }
+  // Launch Grab app (installed) with Play-Store fallback removed per your assumption
+  window.location.href =
+    "intent://open#Intent;scheme=grab;package=com.grabtaxi.passenger;end";
+});
+</script>
+</body>
+</html>
